@@ -67,7 +67,7 @@ class StackCallBack(val mAdapter: StackAdapter,
         for (i in 0..childCount - 1) {
             val child = recyclerView.getChildAt(i)
             val level = childCount - i - 1
-            if (level > 0) {
+            if (level > 0) {    // 最多新增一个level 即 1-StackConfig.SCALR_GAP * （level-1）
                 child.scaleX = (1 - StackConfig.SCALR_GAP * level + fraction * StackConfig.SCALR_GAP).toFloat()
                 if (level < StackConfig.MAX_SHOW_COUNT - 1) { // 1 2 3
                     //顶层的3个图层
