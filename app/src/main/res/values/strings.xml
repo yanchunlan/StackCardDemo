@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">StackCardDemo</string>
-    <string name="item_tv">position：%1$d</string>
+    <string name="item_tv">description：%1$d</string>
 </resources>

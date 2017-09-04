@@ -24,7 +24,7 @@ class StackAdapter(val list: ArrayList<StackEntity> = arrayListOf())
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {
         with(holder.itemView) {
-            val item=list[position]
+            val item = list[position]
             item_stack_iv.setBackgroundResource(item.mipmap)
             item_stack_tv.text = String.format(context.getString(R.string.item_tv), item.description)
         }
@@ -36,11 +36,5 @@ class StackAdapter(val list: ArrayList<StackEntity> = arrayListOf())
     override fun getItemCount(): Int = list.size
 
 
-    class StackViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        init {
-            item.setOnClickListener {
-                it.context.toast("position: $layoutPosition 被点击了")
-            }
-        }
-    }
+    class StackViewHolder(item: View) : RecyclerView.ViewHolder(item)
 }

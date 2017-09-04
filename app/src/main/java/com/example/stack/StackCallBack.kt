@@ -1,5 +1,6 @@
 package com.example.stack
 
+import android.graphics.Canvas
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import org.jetbrains.anko.toast
@@ -10,10 +11,8 @@ import org.jetbrains.anko.toast
  *  相对于 callback 少实现  getMovementFlags(RecyclerView recyclerView, ViewHolder viewHolder)  方法
  *  int dragDirs, int swipeDirs
  *  不支持拖拽 ，支持滑动
- *
  */
-class StackCallBack(val mRecyclerView: RecyclerView,
-                    val mAdapter: StackAdapter,
+class StackCallBack(val mAdapter: StackAdapter,
                     val mData: ArrayList<StackEntity>) :
         ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.DOWN or ItemTouchHelper.UP or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -44,11 +43,40 @@ class StackCallBack(val mRecyclerView: RecyclerView,
         }
     }
 
+    /**
+     *  滑动时的动画
+     */
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
+                             dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
 
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
+        //零界点
+        val width = recyclerView.width * 0.5f
 
+        //移动的距离
+        val distance = Math.sqrt((dX * dX + dY * dY).toDouble())
 
+        // 动画执行的百分比
+        var fraction = distance / width
 
+        if (fraction > 1) {
+            fraction = 1.0
+        }
+        val childCount = recyclerView.childCount
+        for (i in 0..childCount - 1) {
+            val child = recyclerView.getChildAt(i)
+            val level = childCount - i - 1
+            if (level > 0) {
+                child.scaleX = (1 - StackConfig.SCALR_GAP * level + fraction * StackConfig.SCALR_GAP).toFloat()
+                if (level < StackConfig.MAX_SHOW_COUNT - 1) { // 1 2 3
+                    //顶层的3个图层
+                    child.translationY = (StackConfig.TRANS_Y_GAP * level - fraction * StackConfig.TRANS_Y_GAP).toFloat()
+                    child.scaleY = (1 - StackConfig.SCALR_GAP * level + fraction * StackConfig.SCALR_GAP).toFloat()
+                }
+            }
+        }
+    }
 }
 
 
