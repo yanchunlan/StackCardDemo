@@ -27,7 +27,7 @@ class StackManager : RecyclerView.LayoutManager() {
                                     childCount - StackConfig.MAX_SHOW_COUNT
                                 }
 
-        // 2-6   下标 1-5
+
         for (position in bottomPosition..childCount - 1) {
 
             //从4级缓存里面取出一个item, （mChangedScrap 、mAttachedScrap） 、
