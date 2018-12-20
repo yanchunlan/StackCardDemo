@@ -1,4 +1,4 @@
-package com.example.stack
+package com.example.stack.stack
 
 import android.support.v7.widget.RecyclerView
 
@@ -7,8 +7,7 @@ import android.support.v7.widget.RecyclerView
  */
 class StackManager : RecyclerView.LayoutManager() {
 
-    override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams
-            = RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.WRAP_CONTENT)
+    override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams = RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.WRAP_CONTENT)
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State?) {
         super.onLayoutChildren(recycler, state)
@@ -22,10 +21,10 @@ class StackManager : RecyclerView.LayoutManager() {
         }
 
         val bottomPosition: Int = if (childCount < StackConfig.MAX_SHOW_COUNT) {
-                                    0
-                                } else {
-                                    childCount - StackConfig.MAX_SHOW_COUNT
-                                }
+            0
+        } else {
+            childCount - StackConfig.MAX_SHOW_COUNT
+        }
 
 
         for (position in bottomPosition..childCount - 1) {

@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".slid_up_down.SlidingUpPositiveActivity" />
+        <activity android:name=".slid_up_down.SlidingDownPositiveActivity" />
+        <activity android:name=".slid_up_down.SlidingUpReverseActivity" />
+        <activity android:name=".stack.StackActivity"/>
     </application>
 
 </manifest>

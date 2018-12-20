@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/StackCardDemo.iml" filepath="$PROJECT_DIR$/.idea/StackCardDemo.iml" />
+      <module fileurl="file://E:/androidStudio3.0/workspace/StackCardDemo/StackCardDemo.iml" filepath="E:/androidStudio3.0/workspace/StackCardDemo/StackCardDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/StackCardDemo.iml" filepath="$PROJECT_DIR$/StackCardDemo.iml" />
-      <module fileurl="file://E:\androidStudio3.0\workspace\StackCardDemo\StackCardDemo.iml" filepath="E:\androidStudio3.0\workspace\StackCardDemo\StackCardDemo.iml" />
-      <module fileurl="file://F:\demo\StackCardDemo\.idea\StackCardDemo.iml" filepath="F:\demo\StackCardDemo\.idea\StackCardDemo.iml" />
+      <module fileurl="file://F:/demo/StackCardDemo/.idea/StackCardDemo.iml" filepath="F:/demo/StackCardDemo/.idea/StackCardDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,4 +1,4 @@
-package com.example.stack
+package com.example.stack.stack
 
 import android.graphics.Canvas
 import android.support.v7.widget.RecyclerView
@@ -20,9 +20,9 @@ class StackCallBack(val mAdapter: StackAdapter,
     /**
      * 拖动置位  true 置位   false 不置位
      */
-    override fun onMove(recyclerView: RecyclerView?,
-                        viewHolder: RecyclerView.ViewHolder?,
-                        target: RecyclerView.ViewHolder?): Boolean = false
+    override fun onMove(recyclerView: RecyclerView,
+                        viewHolder: RecyclerView.ViewHolder,
+                        target: RecyclerView.ViewHolder): Boolean = false
 
 
     /**
