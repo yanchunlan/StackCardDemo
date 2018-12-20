@@ -1,5 +1,7 @@
 package com.example.stack.slid_up_down;
 
+import android.graphics.PointF;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  * date:  2018/12/20 10:28
  * desc:
  */
-public class SlidingLayoutManager extends RecyclerView.LayoutManager {
+public class SlidingLayoutManager extends RecyclerView.LayoutManager implements RecyclerView.SmoothScroller.ScrollVectorProvider   {
     private static final String TAG = "SlidingLayoutManager";
 
     private int mItemViewWidth;
@@ -328,7 +330,39 @@ public class SlidingLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
+    // 必须实现此类，PagerSnapHelper 一次滚动一次才会有效果
+    @Nullable
+    @Override
+    public PointF computeScrollVectorForPosition(int i) {
+        return null;
+    }
+
     // --------------------------------  snackHelper start ------------------------------
+
+    public int findFirstVisibleItemPosition() {
+        if (mType == TYPE.POSITIVE_DOWN) {
+            if (mHasChild) {
+                int pos = (int) Math.floor(mScrollOffset / mItemViewHeight);
+                return pos - 1;
+            }
+        }
+        return RecyclerView.NO_POSITION;
+    }
+
+    public int findLastVisibleItemPosition() {
+        if (mType == TYPE.POSITIVE_DOWN) {
+            if (mHasChild) {
+                int pos = (int) Math.floor(mScrollOffset / mItemViewHeight);
+                if (mScrollOffset % mItemViewHeight == 0) {
+                    return pos - 1;
+                } else {
+                    return pos;
+                }
+            }
+        }
+        return RecyclerView.NO_POSITION;
+    }
+
 
     public int calculateDistanceToPosition(int targetPos) {
         int pendingScrollOffset = mItemViewHeight * (convert2LayoutPosition(targetPos) + 1);
@@ -376,6 +410,7 @@ public class SlidingLayoutManager extends RecyclerView.LayoutManager {
     public void setListener(OnScrollListener listener) {
         mListener = listener;
     }
+
 
     public interface OnScrollListener {
         void stopScroll(int position); // 滚动到具体一点就调用
