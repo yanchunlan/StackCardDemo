@@ -27,12 +27,56 @@ public class VideoCallLayout extends ViewGroup {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        int w = MeasureSpec.getSize(widthMeasureSpec);
+        int h = MeasureSpec.getSize(heightMeasureSpec);
+
+        int childrenCount = getChildCount();
+        if (childrenCount <= 0) return;
+        if (childrenCount <= 2) { // <=2
+            for (int i = 0; i < childrenCount; i++) {
+                View child = getChildAt(i);
+                if (i == 0) {
+                    child.measure(widthMeasureSpec, heightMeasureSpec);
+                } else {
+                    child.measure(MeasureSpec.makeMeasureSpec(w / 3, MeasureSpec.EXACTLY),
+                            MeasureSpec.makeMeasureSpec(h / 3, MeasureSpec.EXACTLY));
+                }
+            }
+        } else if (childrenCount <= 4) { // <=4
+            int cw = (w - margin) / 2;
+            int ch = (h - margin) / 2;
+            for (int i = 0; i < childrenCount; i++) {
+                View child = getChildAt(i);
+                child.measure(MeasureSpec.makeMeasureSpec(cw, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(ch, MeasureSpec.EXACTLY));
+            }
+        } else { // <=6
+            int cw = (w - margin) / 2;
+            int ch = (h - 2 * margin) / 3;
+            for (int i = 0; i < childrenCount; i++) {
+                if (i > 6) {
+                    break;
+                }
+                View child = getChildAt(i);
+                child.measure(MeasureSpec.makeMeasureSpec(cw, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(ch, MeasureSpec.EXACTLY));
+            }
+        }
+
+        setMeasuredDimension(w, h);
+    }
+
+
+    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int childrenCount = getChildCount();
         if (childrenCount <= 0) return;
         if (childrenCount <= 2) { // <=2
             for (int i = 0; i < childrenCount; i++) {
-                final View child = getChildAt(i);
+                View child = getChildAt(i);
                 setChildDoubleClickListener(l, t, r, b, child);
                 if (i == 0) {
                     child.layout(l, t, r, b);
