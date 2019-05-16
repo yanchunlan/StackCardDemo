@@ -6,6 +6,7 @@ import com.example.stack.slid_up_down.SlidingDownPositiveActivity
 import com.example.stack.slid_up_down.SlidingUpPositiveActivity
 import com.example.stack.slid_up_down.SlidingUpReverseActivity
 import com.example.stack.stack.StackActivity
+import com.example.stack.videocall.VideoCallActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -28,6 +29,11 @@ class MainActivity : BaseActivity() {
         button3.setOnClickListener {
             // 上滑 倒序
             startActivity<SlidingDownPositiveActivity>()
+        }
+
+        button4.setOnClickListener {
+            // 视频通话的自定义  --  暂时隐藏 与recycleView 无关
+            startActivity<VideoCallActivity>()
         }
     }
 }

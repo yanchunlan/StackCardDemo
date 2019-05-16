@@ -19,7 +19,8 @@
         <activity android:name=".slid_up_down.SlidingUpPositiveActivity" />
         <activity android:name=".slid_up_down.SlidingDownPositiveActivity" />
         <activity android:name=".slid_up_down.SlidingUpReverseActivity" />
-        <activity android:name=".stack.StackActivity"/>
+        <activity android:name=".stack.StackActivity" />
+        <activity android:name=".videocall.VideoCallActivity"/>
     </application>
 
 </manifest>
